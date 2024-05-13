@@ -3,14 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="/path/to/htmx.min.js"></script>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.12"
+      integrity="sha384-ujb1lZYygJmzgSwoxRggbCHcjc0rB2XoQrxeTUQyRjrOnlCoYta87iKBWq3EsdM2"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Document</title>
   </head>
   <body>
-    <h1 class="text-3xl font-bold underline">Hello world!</h1>
-    <h1>{{.Name}}</h1>
-    <img src="{{.ThumbnailURL}}" alt="ThumbnailUrl" />
+    <h1 class="text-3xl font-bold underline text-center">Mplus keys</h1>
+
+    <div class="flex flex-col content-center justify-items-center">
+      <!-- <button
+        class="bg-cyan-500 rounded text-3xl text-neutral-900"
+        hx-get="/characters"
+        hx-target="#characters"
+      >
+        Get all characters
+      </button> -->
+
+      <form
+        hx-post="/characters/add"
+        hx-target="#characters"
+        hx-swap="beforeend"
+      >
+        <label for="name">Enter character name</label>
+        <input
+          type="text"
+          name="name"
+          placeholder="enter character name"
+          id="char-name"
+        />
+        <label for="class">Enter character realm</label>
+        <input
+          type="text"
+          name="realm"
+          placeholder="enter character realm"
+          id="char-realm"
+        />
+        <button type="submit">Add character</button>
+      </form>
+    </div>
+
+    <div hx-get="/characters" hx-trigger="load" id="characters"></div>
   </body>
 </html>

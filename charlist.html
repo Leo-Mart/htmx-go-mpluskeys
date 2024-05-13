@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <article class="container flex">
+      {{ range .}}
+      <div class="flex flex-col m-2">
+        <img src="{{.Thumbnail}}" alt="character-thumbnail" />
+        {{.Name}} -- {{.Class}} -- {{.Spec}}
+      </div>
+      <div class="m-2">
+        <ul>
+          {{range .RecentRuns}} {{if (gt .ClearTimeMs .ParTimeMs)}}
+          <li class="bg-red-500">{{.Dungeon}} {{.MythicLevel}}</li>
+          {{else}}
+          <li class="bg-green-500">{{.Dungeon}} {{.MythicLevel}}</li>
+          {{end}} {{end}} {{end}}
+        </ul>
+      </div>
+    </article>
+  </body>
+</html>
